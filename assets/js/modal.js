@@ -29,19 +29,7 @@ function closeModal() {
 }
 
 // Récupération des données saisi
-let prenom = document.querySelector("#first_name");
-let nom = document.querySelector("#name");
-let email = document.querySelector("#email");
-let dateDeNaissance = document.querySelector("#birthdate");
-let nbTournois = document.querySelector("#quantity");
 let btnSubmit = document.querySelector(".btn-submit");
-
-console.log(prenom.value);
-console.log(nom.value);
-console.log(email.value);
-console.log(dateDeNaissance.value);
-console.log(nbTournois.value);
-console.log(btnSubmit);
 
 // Récupération de la valeur de la case à cocher
 let Tournois = document.querySelectorAll("input[type=radio]");
@@ -53,69 +41,101 @@ function recupererValeur() {
   console.log(valeurCheckbox);
 }
 
-// Vérification si la saisi est bonne
-let grasped = /^[a-zA-Z]{2}$/;
-//modifier pour avoir les é et carac spé
-let test = /^[^a-zA-Z0-9_]{2}$/;
+//Verifier les caractère saisie
+const verifCarac = new RegExp(/^[a-zA-Z\-]{2,}$/);
 
-// Fonction pour afficher le message d'erreur
-function afficherMessageErrer(message, id) {
-  const messageErreur = document.getElementById(id);
-  messageErreur.textContent = message;
-  messageErreur.style.display = "block";
-}
-// Fonction pour cacher le message d'erreur
-function cacherMessageErreur() {
-  const messageErreur = document.getElementById("error-message");
-  messageErreur.textContent = "";
-  messageErreur.style.display = "none";
-}
-// Fonction pour afficher un message de succès
-function afficherMessageSucces(message, id) {
-  const messageSucces = document.getElementById(id);
-  messageSucces.textContent = message;
-  messageSucces.style.display = "block";
+//verfier les email saisie
+const verifMail = new RegExp(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/);
+
+//verfier la date d'anniversaire
+const verifBDay = new RegExp(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/);
+
+// Function pour récupérer le nom saisie
+
+function verfiName() {
+  const first_name = document.querySelector("#first_name");
+  const result = verifCarac.test(first_name.value);
+  first_name.closest(".formData").setAttribute("data-error-visible", !result);
+  return result;
 }
 
-// // Afficher le message d'erreur
-// afficherMessageErrerChamp(
-//   "Veuillez entrer 2 caractères ou plus pour le champ du nom."
-// );
+// Function pour récuperer le prénom saisie
+function verifSecondName() {
+  const lastname = document.querySelector("#name");
+  const result = verifCarac.test(lastname.value);
+  lastname.closest(".formData").setAttribute("data-error-visible", !result);
+  return result;
+}
 
-// Récuperer la valeur du btn radio
-let isRadioValid = false;
+// Function pour récuperer et verifier le mail saisie
+function verifEmail() {
+  const mail = document.querySelector("#email");
+  const result = verifMail.test(mail.value);
+  mail.closest(".formData").setAttribute("data-error-visible", !result);
+  return result;
+}
+
+// Function pour récperer et verifier la date de naissance
+
+function recupeBirthDate() {
+  const birthdate = document.querySelector("#birthdate");
+  const result = birthdate.value != "";
+  birthdate.closest(".formData").setAttribute("data-error-visible", !result);
+  return result;
+}
+
+// Récuperer la valeur de l'input radio lieu
 function radioValid() {
-  let listeRadio = document.querySelectorAll("input[type=radio]");
+  const listeRadio = document.querySelectorAll("input[type=radio]");
+  let result = false;
   for (let i = 0; i < listeRadio.length; i++) {
     if (listeRadio[i].checked) {
-      isRadioValid = true;
-      // console.log(listeRadio[i].value);
+      result = true;
+      break;
     }
   }
-  if (!isRadioValid) {
-    afficherMessageErrer("Radio invalide", "errorid");
-  }
+  listeRadio[0]
+    .closest(".formData")
+    .setAttribute("data-error-visible", !result);
+  return result;
 }
 
-//Ne pas oublier de checked
+// Vérifier le nombre de participation
+function participate() {
+  const participate = document.querySelector("#quantity");
+  const result =
+    participate.value >= 0 &&
+    participate.value < 99 &&
+    participate.value !== "";
+  participate.closest(".formData").setAttribute("data-error-visible", !result);
+  return result;
+}
 
 // Vérifier les conditions d'utilisation
-let conditions = document.getElementById("conditions");
-{
-  if (conditions.cheked) {
-    //success
-  } else {
-    //Ecrire un message disant qu'il est obligatoire.
-  }
+let isConditionValid = false;
+function conditionCheck() {
+  const conditions = document.querySelector("#checkbox1");
+  const result = conditions.checked;
+  conditions.closest(".formData").setAttribute("data-error-visible", !result);
+  return result;
 }
 
-// Bloqué le chargement de page lors du submit
-function validate() {
-  preventDefault();
-  let nom = document.getElementById("first_name");
-  console.log(nom.value);
-  radioValid();
-  if (isRadioValid) {
-    console.log("test");
+// Function de validation du formulaire
+function validate(event) {
+  event.preventDefault();
+  if (
+    verfiName() &
+    verifSecondName() &
+    recupeBirthDate() &
+    verifEmail() &
+    participate() &
+    conditionCheck() &
+    radioValid()
+  ) {
+    const body = document.querySelector(".modal-body");
+    const success = document.querySelector(".modal-success");
+    body.style.display = "none";
+    success.style.display = "block";
   }
+  // console.log();
 }

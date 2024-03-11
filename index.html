@@ -49,7 +49,7 @@
           <img src="assets/img/logo/bg_img.jpg" alt="img" />
         </div>
         <button class="btn-signup modal-btn">
-          je m'inscris
+          Je m'inscris
         </button>
       </div>
 
@@ -61,10 +61,10 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="return validate(event);"
             >
               <div
-                class="formData">
+                class="formData" data-error="Veuillez entrer 2 caractères minimun dans le champ Prénom.">
                 <label for="first_name">Prénom</label><br>
                 <input
                   class="text-control"
@@ -74,10 +74,8 @@
                   minlength="2"
                 /><br>
               </div>
-               <div id="error-message-prenom" class="error-message"></div>
-          <div id="success-message-prenom" class="success-message"></div>
               <div
-                class="formData">
+                class="formData" data-error="Veuillez entrer 2 caractères minimun champ du Nom.">
                 <label for="name">Nom</label><br>
                 <input
                   class="text-control"
@@ -87,7 +85,7 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Adresse email invalide.">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
@@ -97,7 +95,7 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Ce champ est obligatoire.">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -107,13 +105,14 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Ce champ est obligatoire.">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" class="text-control" id="quantity" name="quantity" >
               </div>
+              <div id="error-quantity" class="error"></div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData" data-error="Ce champ est obligatoire.">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -181,10 +180,8 @@
                   Portland</label
                 >
               </div>
-              <div id="errorid"></div>
-
               <div
-                class="formData">
+                class="formData" data-error="Veuillez accepter les conditions">
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -211,8 +208,16 @@
               />
             </form>
           </div>
+          <div class="modal-success">
+          <div class="content-success">
+          <span class="close close-modal-success"></span><br>
+      <p class="txt-success"> Merci pour votre inscription </p>
+      <button onclick="closeModal()" class="close"></button>
+    </div>
+      </div>
         </div>
       </div>
+      
     </main>
     <footer>
       <p class="copyrights">

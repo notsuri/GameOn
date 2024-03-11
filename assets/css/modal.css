@@ -35,10 +35,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -69,7 +69,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -77,7 +79,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -90,16 +94,16 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +115,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -184,6 +186,7 @@ main {
 }
 
 .modal-body {
+  display: block;
   padding: 15px 8%;
   margin: 15px auto;
 }
@@ -222,6 +225,7 @@ input {
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
+  font-size: 15px;
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
@@ -526,4 +530,27 @@ footer {
     opacity: 1;
   }
 }
-
+.error {
+  color: red;
+  font-size: 15px;
+  text-align: center;
+}
+.modal-success {
+  display: none;
+  top: 15%;
+  left: 35%;
+  width: 530px;
+  height: 850px;
+  padding: 5px;
+  background-color: #232323;
+  z-index: 1000;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+.content-success {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+}
