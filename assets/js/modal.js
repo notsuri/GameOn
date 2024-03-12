@@ -13,9 +13,25 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector(".close");
 const form = document.querySelector("form");
+const modalBody = document.querySelector(".modal-body");
+const modalSuccess = document.querySelector(".modal-success");
+const Tournois = document.querySelectorAll("input[type=radio]");
+const btnSubmit = document.querySelector(".btn-submit");
+
+//Verifier les caractère saisie
+const verifCarac = new RegExp(/^[a-zA-Z\-]{2,}$/);
+//verfier les email saisie
+const verifMail = new RegExp(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/);
+//verfier la date d'anniversaire
+const verifBDay = new RegExp(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/);
 
 // Événement de lancement de la modal
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    resetForm();
+    launchModal();
+  })
+);
 
 // Fonction pour lancer le formulaire modal
 function launchModal() {
@@ -31,28 +47,16 @@ function closeModal() {
 
 function resetForm() {
   form.reset();
+  modalSuccess.classList.add("hidden");
+  modalBody.classList.remove("hidden");
 }
 // Récupération des données saisi
-let btnSubmit = document.querySelector(".btn-submit");
 
 // Récupération de la valeur de la case à cocher
-let Tournois = document.querySelectorAll("input[type=radio]");
 function recupererValeur() {
   const valeurCheckbox = this.value;
-  console.log(valeurCheckbox);
   return valeurCheckbox;
-
-  console.log(valeurCheckbox);
 }
-
-//Verifier les caractère saisie
-const verifCarac = new RegExp(/^[a-zA-Z\-]{2,}$/);
-
-//verfier les email saisie
-const verifMail = new RegExp(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/);
-
-//verfier la date d'anniversaire
-const verifBDay = new RegExp(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/);
 
 // Function pour récupérer le nom saisie
 
@@ -116,7 +120,6 @@ function participate() {
 }
 
 // Vérifier les conditions d'utilisation
-let isConditionValid = false;
 function conditionCheck() {
   const conditions = document.querySelector("#checkbox1");
   const result = conditions.checked;
@@ -136,11 +139,9 @@ function validate(event) {
     conditionCheck() &
     radioValid()
   ) {
-    const body = document.querySelector(".modal-body");
-    const success = document.querySelector(".modal-success");
-    body.style.display = "none";
-    resetForm();
-    success.style.display = "block";
+    modalBody.classList.add("hidden");
+    modalSuccess.classList.remove("hidden");
+
     //Mettre le formulaire a zéro
   }
 }

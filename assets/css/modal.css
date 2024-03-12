@@ -30,6 +30,10 @@ img {
   padding-right: 1rem;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .topnav {
   overflow: hidden;
   margin: 3.5%;
@@ -536,9 +540,8 @@ footer {
   text-align: center;
 }
 .modal-success {
-  display: none;
-  top: 15%;
-  left: 35%;
+  padding: 15px 8%;
+  margin: 15px auto;
   width: 530px;
   height: 850px;
   padding: 5px;
@@ -569,4 +572,8 @@ footer {
   cursor: pointer;
   border: 0;
   margin-bottom: 15px;
+}
+.header-logo {
+  width: auto;
+  height: auto;
 }
