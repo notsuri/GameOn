@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector(".close");
+const form = document.querySelector("form");
 
 // Événement de lancement de la modal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -28,6 +29,9 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
+function resetForm() {
+  form.reset();
+}
 // Récupération des données saisi
 let btnSubmit = document.querySelector(".btn-submit");
 
@@ -135,7 +139,8 @@ function validate(event) {
     const body = document.querySelector(".modal-body");
     const success = document.querySelector(".modal-success");
     body.style.display = "none";
+    resetForm();
     success.style.display = "block";
+    //Mettre le formulaire a zéro
   }
-  // console.log();
 }
