@@ -59,7 +59,6 @@ function recupererValeur() {
 }
 
 // Function pour récupérer le nom saisie
-
 function verfiName() {
   const first_name = document.querySelector("#first_name");
   const result = verifCarac.test(first_name.value);
@@ -84,10 +83,9 @@ function verifEmail() {
 }
 
 // Function pour récperer et verifier la date de naissance
-
 function recupeBirthDate() {
   const birthdate = document.querySelector("#birthdate");
-  const result = birthdate.value != "";
+  const result = birthdate.value !== "";
   birthdate.closest(".formData").setAttribute("data-error-visible", !result);
   return result;
 }
@@ -141,7 +139,5 @@ function validate(event) {
   ) {
     modalBody.classList.add("hidden");
     modalSuccess.classList.remove("hidden");
-
-    //Mettre le formulaire a zéro
   }
 }
