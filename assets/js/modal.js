@@ -37,7 +37,7 @@ modalBtn.forEach((btn) =>
 function launchModal() {
   modalbg.style.display = "block";
 }
-// Fevenement de fermuture de la modal
+// Evenement de fermuture de la modal
 modalClose.addEventListener("click", closeModal);
 
 // Fonction pour fermer le formulaire modal
