@@ -19,11 +19,11 @@ const Tournois = document.querySelectorAll("input[type=radio]");
 const btnSubmit = document.querySelector(".btn-submit");
 
 //Verifier les caractère saisie
-const verifCarac = new RegExp(/^[a-zA-Z\-]{2,}$/);
+const verifCarac = /^.{2,}$/;
 //verfier les email saisie
-const verifMail = new RegExp(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/);
+const verifMail = /^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/;
 //verfier la date d'anniversaire
-const verifBDay = new RegExp(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/);
+const verifBDay = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
 
 // Événement de lancement de la modal
 modalBtn.forEach((btn) =>
